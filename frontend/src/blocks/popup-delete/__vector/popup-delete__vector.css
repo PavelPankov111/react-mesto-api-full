@@ -1,0 +1,17 @@
+.popup-delete__vector{
+    min-width: 37px;
+    min-height: 37px;
+}
+
+.popup-delete__vector:hover{
+    opacity: .6;
+    transition: .2s;
+}
+
+@media screen and (max-width : 620px){
+    .popup-delete__vector{
+        width: 37px;
+        height: 37px;
+    }
+}
+

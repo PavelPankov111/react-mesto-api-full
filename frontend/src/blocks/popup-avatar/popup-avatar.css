@@ -1,0 +1,24 @@
+@import url(./__container/popup-avatar__container.css);
+@import url(./__vector/popup-avatar__vector.css);
+@import url(./__button/popup-avatar__button.css);
+@import url(./__content/popup-avatar__content.css);
+@import url(./__title/popup-avatar__title.css);
+@import url(./__input-link/popup-avatar__input-link.css);
+
+.popup-avatar{
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background: rgba(0,0,0,0);
+    position: fixed;
+    z-index: 5;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.5s linear;
+    transition: all 0.5s;
+}
+

@@ -1,0 +1,21 @@
+.element__vector-button{
+    position:absolute;
+    top:-50px;
+    right:-50px;
+    cursor: pointer;
+    padding: 0;
+    width:58px;
+    height:58px;
+    padding:0;
+    background: rgba(0,0,0,0.01);
+    border: none;
+}
+
+@media screen and (max-width : 425px){
+    .element__vector-button{
+        top:-30px;
+        right:-30px;
+        width:37px;
+        height:37px;
+    }
+}

@@ -1,0 +1,25 @@
+.popup-pluse__button{
+    width: 358px;
+    height: 50px;
+    background: #000000;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: 0;
+    border: none;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    outline: none;
+    color: white;
+    
+}
+
+@media screen and (max-width: 620px){
+    .popup-pluse__button{
+        width: 200px;
+        height: 40px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

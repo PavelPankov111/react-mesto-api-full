@@ -1,0 +1,14 @@
+.popup-avatar__content{
+    width:350px;
+    height:198px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+@media screen and (max-width : 620px){
+    .popup-avatar__content{
+       width:200px;
+      height:134px;
+    }
+}

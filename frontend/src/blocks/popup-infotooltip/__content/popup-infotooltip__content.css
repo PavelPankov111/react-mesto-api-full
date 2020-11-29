@@ -1,0 +1,8 @@
+.popup-infotooltip__content{
+    min-width: 266px;
+    min-height: 232px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-top: 20px;
+}

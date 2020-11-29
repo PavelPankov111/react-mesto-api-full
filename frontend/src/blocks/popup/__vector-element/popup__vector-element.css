@@ -1,0 +1,17 @@
+.popup__vector-element{
+    min-width: 37px;
+    min-height: 37px;
+}
+
+.popup__vector-element:hover{
+    opacity: .6;
+    transition: .2s;
+}
+
+
+@media screen and (max-width : 620px){
+.popup__vector-element{
+    width: 37px;
+    height: 37px;
+}
+}

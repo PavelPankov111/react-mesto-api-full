@@ -1,0 +1,16 @@
+.header__button{
+    max-width: 114px;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: right;
+    color: #FFFFFF;
+    cursor: pointer;
+    text-decoration: none;
+    margin: auto;
+}
+
+.header__button:hover{
+    opacity: .6;
+    transition: 0.1s;
+}

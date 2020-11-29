@@ -1,0 +1,14 @@
+.popup__inputs{
+    height: 115px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    font-weight: normal;
+}
+
+@media screen and (max-width : 425px){
+    .popup__inputs{
+        height: 20.47vw;
+        }
+    }
+

@@ -1,0 +1,8 @@
+.element__title-like{
+    display: flex;
+    justify-content: space-between;
+    width: 246px;
+    margin: auto;
+    min-height: 77px;
+    align-items: center;
+}

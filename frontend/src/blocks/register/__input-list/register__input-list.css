@@ -1,0 +1,7 @@
+.register__input-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 358px;
+    margin-top: 50px;
+}

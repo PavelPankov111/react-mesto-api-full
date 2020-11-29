@@ -1,0 +1,11 @@
+.error{
+    font-size: 12px;
+    line-height: 14px;
+    color: #FF0000;
+    display: block;
+    margin-top: 4px;
+    box-sizing: border-box;
+    height: 25px;
+    max-width: 355px;
+    
+}

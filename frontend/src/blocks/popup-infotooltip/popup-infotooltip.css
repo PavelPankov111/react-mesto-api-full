@@ -1,0 +1,22 @@
+@import url(./__container/popup-infotooltip__container.css);
+@import url(./__content/popup-infotooltip__content.css);
+@import url(./__image/popup-infotooltip__image.css);
+@import url(./__title/popup-infotooltip__title.css);
+@import url(./__vector/popup-infotooltip__vector.css);
+
+.popup-infotooltip{
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background: rgba(0,0,0,0);
+    position: fixed;
+    z-index: 5;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.5s linear;
+    transition: all 0.5s;
+}

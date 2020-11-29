@@ -1,0 +1,16 @@
+.popup-delete__content{
+    width:350px;
+    height:111px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+@media screen and (max-width : 620px){
+    .popup-delete__content{
+        width: 197px;
+        height: 85px;
+    }
+}
+
+

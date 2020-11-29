@@ -1,0 +1,33 @@
+@import url(./__container/popup__container.css);
+@import url(./__button/popup__button.css);
+@import url(./__title/popup__title.css);
+@import url(./__inputs/popup__inputs.css);
+@import url(./__content/popup__content.css);
+@import url(./__vector/popup__vector.css);
+@import url(./__input/popup__input.css);
+@import url(./__vector-button/popup__vector-button.css);
+@import url(./__element-container/popup__element-container.css);
+@import url(./__element-image/popup__element-image.css);
+@import url(./__element-opened/popup__element-opened.css);
+@import url(./__element-text/popup__element-text.css);
+@import url(./__vector-element/popup__vector-element.css);
+
+
+.popup{
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background: rgba(0,0,0,0);
+    position: fixed;
+    z-index: 5;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.5s linear;
+    transition: all 0.5s;
+}
+
+

@@ -1,0 +1,14 @@
+@import url(./__title/login__title.css);
+@import url(./__input-list/login__input-list.css);
+@import url(./__input-email/login__input-email.css);
+@import url(./__input-password/login__input-password.css);
+@import url(./__button/login__button.css);
+
+
+.login{
+    max-width: 358px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 60px auto auto auto;
+}

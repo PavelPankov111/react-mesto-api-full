@@ -1,0 +1,8 @@
+.loading{
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 56px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+}

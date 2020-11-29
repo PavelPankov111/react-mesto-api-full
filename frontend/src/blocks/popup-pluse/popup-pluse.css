@@ -1,0 +1,25 @@
+@import url(./__container/popup-pluse__container.css);
+@import url(./__title/popup-pluse__title.css);
+@import url(./__vector/popup-pluse__vector.css);
+@import url(./__content/popup-pluse__content.css);
+@import url(./__inputs/popup-pluse__inputs.css);
+@import url(./__input/popup-pluse__input.css);
+@import url(./__input-link/popup-pluse__input-link.css);
+@import url(./__button/popup-pluse__button.css);
+
+.popup-pluse{
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background: rgba(0,0,0,0);
+    position: fixed;
+    z-index: 5;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.5s linear;
+    transition: all 0.5s;
+}

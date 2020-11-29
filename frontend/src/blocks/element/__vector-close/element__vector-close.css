@@ -1,0 +1,16 @@
+.element__vector-close{
+    min-width: 37px;
+    min-height: 37px;
+}
+
+.element__vector-close:hover{
+    opacity: .6;
+    transition: .2s;
+}
+
+@media screen and (max-width : 425px){
+    .element__vector-close{
+        width: 30px;
+        height: 30px;
+    }
+}

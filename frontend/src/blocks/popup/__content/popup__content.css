@@ -1,0 +1,21 @@
+.popup__content{
+    min-width:350px;
+    min-height:260px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+@media screen and (max-width : 620px){
+    .popup__content{
+        min-width:277px;
+        min-height:201px;
+    }
+}
+
+@media screen and (max-width : 425px){
+    .popup__content{
+        min-width:65.18vw;
+        min-height:47.29vw;
+    }
+}
