@@ -29,11 +29,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   },
   {
     "revision": "a8acc871456b1001597672e02c5199ca",
-    "url": "/mesto-react/static/media/like.a8acc871.svg"
+    "url": "/static/media/like.a8acc871.svg"
   },
   {
     "revision": "5bbb05f725aa334a73acf3174e255f4e",
-    "url": "/mesto-react/static/media/likehover.5bbb05f7.svg"
+    "url": "/static/media/likehover.5bbb05f7.svg"
   },
   {
     "revision": "d476a8b86d0b656cfa463c1148e96069",
