@@ -63,7 +63,7 @@ function App() {
           console.log(err);
         });
     }
-  }, [])
+  }, [loggedIIn])
 
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false)
   const [currentUser, setCurrentUser] = React.useState({
