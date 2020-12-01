@@ -49,7 +49,6 @@ function App() {
     tokenCheck()
   }, [])
 
-
   const [isLoggedIn, setIsLoggedIn] = React.useState(false)
 
   React.useEffect(() => {
