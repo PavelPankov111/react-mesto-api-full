@@ -165,7 +165,7 @@ class Api {
 }
 
 export const api = new Api({
-  url: 'https://pavel.students.nomoredomains.rocks',
+  url: 'http://api.pavel.students.nomoredomains.monster',
   headers: {
     'Content-Type': 'application/json',
   }
