@@ -39,10 +39,14 @@ class Api {
       .catch(this._handleResponseError)
   }
 
-  changeAvatar(form) {
+  changeAvatar(form, token) {
     return fetch(`${this.url}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this.headers,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
       body: JSON.stringify({
         avatar: form
       })

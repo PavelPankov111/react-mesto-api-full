@@ -201,7 +201,7 @@ function App() {
 
   function handleUpdateAvatar(obj) {
     popupAvatarButton.textContent = "Сохранение..."
-    api.changeAvatar(obj)
+    api.changeAvatar(obj, localStorage.getItem('jwt'))
       .then((res) => {
         setCurrentUser(res)
         setIsEditAvatarOpen(false)
