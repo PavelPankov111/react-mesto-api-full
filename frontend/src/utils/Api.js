@@ -17,17 +17,23 @@ class Api {
     return Promise.reject(err.message)
   }
 
-  getInitialCards() {
+  getInitialCards(token) {
     return fetch(`${this.url}/cards`, {
-      headers: this.headers,
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
     })
       .then(this._handleResponse)
       .catch(this._handleResponseError)
   }
 
-  getUserInfo() {
+  getUserInfo(token) {
     return fetch(`${this.url}/users/me`, {
-      headers: this.headers
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      }
     })
       .then(this._handleResponse)
       .catch(this._handleResponseError)
@@ -45,20 +51,26 @@ class Api {
       .catch(this._handleResponseError)
   }
 
-  addCard(item) {
+  addCard(item, token) {
     return fetch(`${this.url}/cards`, {
       method: 'POST',
-      headers: this.headers,
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(item)
     })
       .then(this._handleResponse)
       .catch(this._handleResponseError)
   }
 
-  changeUserInfo(value) {
+  changeUserInfo(value, token) {
     return fetch(`${this.url}/users/me`, {
       method: 'PATCH',
-      headers: this.headers,
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         name: value.name,
         about: value.about
@@ -68,28 +80,37 @@ class Api {
       .catch(this._handleResponseError)
   }
 
-  deleteCard(item) {
+  deleteCard(item, token) {
     return fetch(`${this.url}/cards/${item}`, {
       method: 'DELETE',
-      headers: this.headers
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      }
     })
       .then(this._handleResponse)
       .catch(this._handleResponseError)
   }
 
-  setLike(item) {
+  setLike(item, token) {
     return fetch(`${this.url}/cards/likes/${item}`, {
       method: 'PUT',
-      headers: this.headers
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      }
     })
       .then(this._handleResponse)
       .catch(this._handleResponseError)
   }
 
-  removeLike(item) {
+  removeLike(item, token) {
     return fetch(`${this.url}/cards/likes/${item}`, {
       method: 'DELETE',
-      headers: this.headers
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      }
     })
       .then(this._handleResponse)
       .catch(this._handleResponseError)
@@ -131,7 +152,7 @@ class Api {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        'Authorization': `Bearer ${token}`
       },
     })
       .then(this._handleResponse)
@@ -142,7 +163,7 @@ class Api {
 export const api = new Api({
   url: 'https://pavel.students.nomoredomains.rocks',
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   }
 })
 

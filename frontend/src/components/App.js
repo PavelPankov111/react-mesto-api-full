@@ -28,7 +28,7 @@ function App() {
 
   const [loggedIIn, setLoggedIIn] = React.useState(false)
   const [isPopupInfotooltipOpen, setIsPopupInfotooltipOpen] = React.useState(false)
-  const [img, setImg] =  React.useState()
+  const [img, setImg] = React.useState()
   const [title, setTitle] = React.useState('')
 
   function tokenCheck() {
@@ -39,7 +39,7 @@ function App() {
           if (res) {
             console.log(res)
             setLoggedIIn(true)
-            setHandleEmail(res.data.email)
+            setHandleEmail(res.email)
             history.push('/')
           }
         })
@@ -47,6 +47,23 @@ function App() {
   }
   React.useEffect(() => {
     tokenCheck()
+  }, [])
+
+
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
+
+  React.useEffect(() => {
+    if (isLoggedIn) {
+      Promise.all([api.getUserInfo(localStorage.getItem('jwt')), api.getInitialCards(localStorage.getItem('jwt'))])
+        .then((res) => {
+          console.log(res[0])
+          setCurrentUser(res[0])
+          setCards(res[1])
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [])
 
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false)
@@ -58,7 +75,8 @@ function App() {
   });
 
   React.useEffect(() => {
-    api.getUserInfo()
+    setIsLoggedIn(true)
+    api.getUserInfo(localStorage.getItem('jwt'))
       .then(res => {
         setCurrentUser(res)
       })
@@ -106,7 +124,8 @@ function App() {
   const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
-    api.getInitialCards()
+    setIsLoggedIn(true)
+    api.getInitialCards(localStorage.getItem('jwt'))
       .then((data) => {
         setCards(data)
       })
@@ -119,7 +138,7 @@ function App() {
     const isLiked = props.likes.some(i => i._id === currentUser._id);
 
     if (!isLiked) {
-      api.setLike(props._id)
+      api.setLike(props._id, localStorage.getItem('jwt'))
         .then((newCard) => {
           const newCards = cards.map((c) => c._id === props._id ? newCard : c);
           setCards(newCards);
@@ -128,7 +147,7 @@ function App() {
           console.log(err);
         });
     } else {
-      api.removeLike(props._id)
+      api.removeLike(props._id, localStorage.getItem('jwt'))
         .then((newCard) => {
           const newCards = cards.map((c) => c._id === props._id ? newCard : c);
           setCards(newCards);
@@ -154,7 +173,7 @@ function App() {
   function handleDeleteCard(evt) {
     evt.preventDefault()
     popupDeletSubmitButton.textContent = 'Удаление...'
-    api.deleteCard(cardDelete._id)
+    api.deleteCard(cardDelete._id, localStorage.getItem('jwt'))
       .then(() => {
         const newCards = cards.filter(function (c) {
           popupDeletSubmitButton.textContent = 'Да'
@@ -170,7 +189,7 @@ function App() {
 
   function handleUpdateUser(item) {
     popupButton.textContent = "Сохранение..."
-    api.changeUserInfo(item)
+    api.changeUserInfo(item, localStorage.getItem('jwt'))
       .then((obj) => {
         setCurrentUser(obj)
         setIsEditProfilePopupOpen(false)
@@ -196,7 +215,7 @@ function App() {
 
   function handleAddPlaceSubmit(item) {
     popupPluseButton.textContent = "Сохранение..."
-    api.addCard(item)
+    api.addCard(item, localStorage.getItem('jwt'))
       .then((res) => {
         setCards([res, ...cards]);
         setIsAddPlaceOpen(false)
@@ -213,65 +232,68 @@ function App() {
     setLoggedIIn(true)
   }
 
-  function handleClear(){
+  function handleClear() {
     localStorage.removeItem('jwt')
   }
 
-  function onRegister(email, password){
+  function onRegister(email, password) {
     api.register(email, password).then((res) => {
       console.log(res)
       if (res.statusCode !== 400) {
-          setImg(union)
-          setIsPopupInfotooltipOpen(true)
-          setTitle('Вы успешно зарегистрировались!')
-          history.push('/sing-in') 
+        setImg(union)
+        setIsPopupInfotooltipOpen(true)
+        setTitle('Вы успешно зарегистрировались!')
+        history.push('/sing-in')
       }
-  })
-  .catch((err) => {
-      console.log(err)
-      setIsPopupInfotooltipOpen(true)
-      setImg(union2)
-      setTitle('Что-то пошло не так! Попробуйте ещё раз.')
-  })
+    })
+      .catch((err) => {
+        console.log(err)
+        setIsPopupInfotooltipOpen(true)
+        setImg(union2)
+        setTitle('Что-то пошло не так! Попробуйте ещё раз.')
+      })
   }
 
-  function onLogin(email, password){
+  function onLogin(email, password) {
+    setIsLoggedIn(true)
     api.login(email, password).then((res) => {
       console.log(res)
 
       if (res.token) {
-          console.log('true')
-          localStorage.setItem('jwt', res.token)
-          tokenCheck()
-          handleLogIn()
-          setHandleEmail(email)
-          history.push('/')
+        console.log('true')
+        localStorage.setItem('jwt', res.token)
+        tokenCheck()
+        handleLogIn()
+        setHandleEmail(email)
+        history.push('/')
 
       }
-  })
+    })
       .catch(() => {
-          console.log('catch')
-          setImg(union2)
-          setTitle('Что-то пошло не так! Попробуйте ещё раз.')
-          setIsPopupInfotooltipOpen(true)
+        console.log('catch')
+        setImg(union2)
+        setTitle('Что-то пошло не так! Попробуйте ещё раз.')
+        setIsPopupInfotooltipOpen(true)
       })
   }
+
+
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-      <InfoTooltip namePopup="-infotooltip" isOpen={isPopupInfotooltipOpen} close={closeAllPopups} image={img} title={title} />
-        <Header email={handleEmail} onClick={handleClear}/>
+        <InfoTooltip namePopup="-infotooltip" isOpen={isPopupInfotooltipOpen} close={closeAllPopups} image={img} title={title} />
+        <Header email={handleEmail} onClick={handleClear} />
 
         <Switch>
           <Route path="/sing-in">
-            <Login login={onLogin}  />
+            <Login login={onLogin} />
           </Route>
 
           <Route path="/sing-up">
-            <Register register={onRegister}/>
+            <Register register={onRegister} />
           </Route>
-          <ProtectedRoute loggedIn={loggedIIn} exact path='/'>
+          <ProtectedRoute loading={isLoggedIn} loggedIn={loggedIIn} exact path='/'>
             <DeletePopup title="Вы уверенны?" namePopup="-delete" titleButton="Да" isOpen={isPopupDeleteOpen} close={closeAllPopups} handleSubmit={handleDeleteCard} />
             <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} >
             </Main>
@@ -294,3 +316,14 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+

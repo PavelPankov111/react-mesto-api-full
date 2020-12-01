@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom'
 
 function ProtectedRoute({ children, ...props }) {
-    if (props.loggedIn) {
+    if (props.loggedIn ?? props.loading) {
     return <Route {...props}>{children}</Route>
     } else {
       return <Redirect to='/sing-in' />
