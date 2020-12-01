@@ -97,7 +97,7 @@ class Api {
   }
 
   setLike(item, token) {
-    return fetch(`${this.url}/cards/likes/${item}`, {
+    return fetch(`${this.url}/cards/${item}/likes`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -109,7 +109,7 @@ class Api {
   }
 
   removeLike(item, token) {
-    return fetch(`${this.url}/cards/likes/${item}`, {
+    return fetch(`${this.url}/cards/${item}/likes`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`,
