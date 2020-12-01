@@ -96,7 +96,7 @@ class Api {
   }
 
   register(email, password) {
-    return fetch('https://auth.nomoreparties.co/signup', {
+    return fetch(`${this.url}/signup`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -111,7 +111,7 @@ class Api {
   }
 
   login(email, password) {
-    return fetch('https://auth.nomoreparties.co/signin', {
+    return fetch(`${this.url}/signin`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -126,7 +126,7 @@ class Api {
   }
 
   checkToken(token) {
-    return fetch('https://auth.nomoreparties.co/users/me', {
+    return fetch(`${this.url}/users/me`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -140,12 +140,10 @@ class Api {
 }
 
 export const api = new Api({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-13',
+  url: 'https://pavel.students.nomoredomains.rocks',
   headers: {
     'Content-Type': 'application/json',
-    authorization: '8ed74a04-ed04-4c07-90fb-2948fe98949f',
   }
 })
-
 
 export default Api;
