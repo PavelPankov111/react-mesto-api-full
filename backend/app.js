@@ -12,6 +12,7 @@ const { login, createUser } = require('./controllers/users');
 const NotFoundError = require('./errors/not-found-err');
 const auth = require('./middlewares/auth');
 const cors = require('cors');
+app.use(cors());
 
 const { PORT = 4000 } = process.env;
 const app = express();
@@ -22,7 +23,6 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
 });
 
-app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
