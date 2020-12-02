@@ -104,7 +104,7 @@ class Api {
         'Content-Type': 'application/json',
       }
     })
-      .then(this._handleResponse)
+      .then(this._handleResponse, console.log(item))
       .catch(this._handleResponseError)
   }
 

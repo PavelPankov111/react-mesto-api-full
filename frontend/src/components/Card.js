@@ -10,7 +10,7 @@ function Card(props) {
 
     const cardId = React.useContext(CurrentUserContext);
 
-    const isOwn = owner === cardId._id;
+    const isOwn = owner._id === cardId._id;
 
 
     const cardDeleteButtonClassName = (
@@ -39,4 +39,3 @@ function Card(props) {
 }
 
 export default Card;
-
