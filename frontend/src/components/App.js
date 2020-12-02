@@ -135,10 +135,11 @@ function App() {
 
   function handleClickLike(props) {
     const isLiked = props.likes.some(i => i._id === currentUser._id);
-
+    console.log(isLiked)
     if (!isLiked) {
       api.setLike(props._id, localStorage.getItem('jwt'))
         .then((newCard) => {
+          console.log(newCard)
           const newCards = cards.map((c) => c._id === props._id ? newCard : c);
           setCards(newCards);
         })
@@ -276,8 +277,6 @@ function App() {
       })
   }
 
-
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -315,14 +314,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-

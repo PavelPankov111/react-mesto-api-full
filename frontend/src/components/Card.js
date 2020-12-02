@@ -11,6 +11,8 @@ function Card(props) {
     const cardId = React.useContext(CurrentUserContext);
 
     const isOwn = owner === cardId._id;
+    console.log(owner)
+    console.log(cardId._id)
 
 
     const cardDeleteButtonClassName = (
