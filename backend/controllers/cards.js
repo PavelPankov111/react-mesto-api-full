@@ -31,31 +31,23 @@ module.exports.deleteCards = (req, res, next) => {
 };
 
 module.exports.likeCard = (req, res, next) => {
-  Card.findByIdAndUpdate(
-    req.params.cardId,
-    { $addToSet: { likes: req.user._id } },
+  Card.findOneAndUpdate(
+    { _id: req.params._id },
+    { $addToSet: { likes: req.user._id } }, // убрать _id из массива
     { new: true },
   )
-    .then((card) => {
-      if (!card) {
-        throw new NotFoundError('Такой карточки не существует');
-      }
-      res.send(card);
-    })
+    .orFail(new NotFoundError('Карточка не найдена'))
+    .then((card) => res.status(200).send(card))
     .catch(next);
 };
 
 module.exports.dislikeCard = (req, res, next) => {
-  Card.findByIdAndUpdate(
-    req.params.cardId,
-    { $pull: { likes: req.user._id } },
+  Card.findOneAndUpdate(
+    { _id: req.params._id },
+    { $pull: { likes: req.user._id } }, // убрать _id из массива
     { new: true },
   )
-    .then((card) => {
-      if (!card) {
-        throw new NotFoundError('Такой карточки не существует');
-      }
-      res.send(card);
-    })
+    .orFail(new NotFoundError('Карточка не найдена'))
+    .then((card) => res.status(200).send(card))
     .catch(next);
 };
