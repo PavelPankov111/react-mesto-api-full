@@ -8,20 +8,17 @@ const userSchema = new Schema({
   name: {
     type: String,
     minlength: 2,
-    required: true,
     maxlength: 30,
     default: 'Имя',
   },
   about: {
     type: String,
     minlength: 2,
-    required: true,
     maxlength: 30,
     default: 'О себе',
   },
   avatar: {
     type: String,
-    required: true,
     validate: {
       validator(v) {
         const link = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;

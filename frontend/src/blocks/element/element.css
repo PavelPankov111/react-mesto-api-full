@@ -4,11 +4,10 @@
 @import url(./__button-like/element__button-like.css);
 @import url(./__trashs/element__trashs.css);
 @import url(./__image/element__image.css);
-@import url(./__button-like/element__button-like_active.css);
 @import url(./__button-like/element__button-like.css);
 @import url(./__container/element__container.css);
-@import url(./__image-active/element__image-active.css);
 @import url(./__text-active/element__text-active.css);
+@import url(./__image-active/element__image-active.css);
 @import url(./__vector-close/element__vector-close.css);
 @import url(./__vector-button/element__vector-button.css);
 @import url(./__counter/element__counter.css);
