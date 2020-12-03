@@ -38,7 +38,6 @@ function App() {
       api.checkToken(localStorage.getItem('jwt'))
         .then((res) => {
           if (res) {
-            console.log(res)
             setLoggedIIn(true)
             setHandleEmail(res.email)
             history.push('/')
@@ -52,19 +51,18 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false)
 
-  React.useEffect(() => {
-    if (isLoggedIn) {
-      Promise.all([api.getUserInfo(localStorage.getItem('jwt')), api.getInitialCards(localStorage.getItem('jwt'))])
-        .then((res) => {
-          console.log(res[0])
-          setCurrentUser(res[0])
-          setCards(res[1])
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [loggedIIn], [cards])
+  // React.useEffect(() => {
+  //   if (isLoggedIn) {
+  //     Promise.all([api.getUserInfo(localStorage.getItem('jwt')), api.getInitialCards(localStorage.getItem('jwt'))])
+  //       .then((res) => {
+  //         setCurrentUser(res[0])
+  //         setCards(res[1])
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // }, [loggedIIn])
 
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false)
   const [currentUser, setCurrentUser] = React.useState({
@@ -75,15 +73,19 @@ function App() {
   });
 
   React.useEffect(() => {
-    setIsLoggedIn(true)
+    console.log('effect', loggedIIn)
+    if (!loggedIIn) {
+      return 
+    }
     api.getUserInfo(localStorage.getItem('jwt'))
       .then(res => {
+        console.log('request', res)
         setCurrentUser(res)
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [])
+  }, [loggedIIn])
 
   const handleEditProfileClick = () => {
     setIsEditProfilePopupOpen(true)
@@ -123,15 +125,15 @@ function App() {
 
 
   React.useEffect(() => {
-    setIsLoggedIn(true)
     api.getInitialCards(localStorage.getItem('jwt'))
       .then((data) => {
+        console.log(data)
         setCards(data)
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [])
+  }, [loggedIIn])
 
   function handleClickLike(props) {
     const isLiked = props.likes.some((i) => i === currentUser._id);
@@ -224,6 +226,8 @@ function App() {
 
   function handleClear() {
     localStorage.removeItem('jwt')
+    setCurrentUser({})
+    setLoggedIIn(false)
   }
 
   function onRegister(email, password) {
@@ -245,9 +249,8 @@ function App() {
   }
 
   function onLogin(email, password) {
-    setIsLoggedIn(true)
     api.login(email, password).then((res) => {
-      console.log(res)
+      console.log('login', res)
 
       if (res.token) {
         console.log('true')
@@ -281,7 +284,7 @@ function App() {
           <Route path="/sing-up">
             <Register register={onRegister} />
           </Route>
-          <ProtectedRoute loading={isLoggedIn} loggedIn={loggedIIn} exact path='/'>
+          <ProtectedRoute loggedIn={loggedIIn} exact path='/'>
             <DeletePopup title="Вы уверенны?" namePopup="-delete" titleButton="Да" isOpen={isPopupDeleteOpen} close={closeAllPopups} handleSubmit={handleDeleteCard} />
             <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} >
             </Main>

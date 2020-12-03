@@ -5,6 +5,9 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext'
 
 function Main(props) {
     const userInfo = React.useContext(CurrentUserContext)
+    if(!userInfo){
+        return null
+    }
 
     return (
         <main>
