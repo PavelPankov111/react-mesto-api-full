@@ -206,6 +206,7 @@ function App() {
     popupPluseButton.textContent = "Сохранение..."
     api.addCard(item, localStorage.getItem('jwt'))
       .then((res) => {
+        console.log(res)
         setCards([res, ...cards]);
         setIsAddPlaceOpen(false)
         popupPluseButton.textContent = "Сохранить"
