@@ -8,17 +8,17 @@ function Card(props) {
         onCardClick(link, name)
     }
 
+    const [loggerIn, setLoggerIn] = React.useState(false)
+
     const cardId = React.useContext(CurrentUserContext);
 
     const isOwn = owner === cardId._id;
-    console.log(owner)
-    console.log(cardId._id)
-
 
     const cardDeleteButtonClassName = (
         `${isOwn ? 'element__trashs_visible' : 'element__trashs'}`
     );
 
+   
     const isLiked = likes.some(i => i._id === cardId._id);
 
     const cardLikeButtonClassName = `${isLiked ? 'element__button-like_active' : 'element__button-like '}`

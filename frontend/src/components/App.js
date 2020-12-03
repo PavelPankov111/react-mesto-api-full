@@ -134,29 +134,6 @@ function App() {
   }, [])
 
   function handleClickLike(props) {
-    // const isLiked = props.likes.some(i => i._id === currentUser._id);
-    // console.log(isLiked)
-    // if (!isLiked) {
-    //   api.setLike(props._id, localStorage.getItem('jwt'))
-    //     .then((newCard) => {
-    //       console.log(newCard)
-    //       const newCards = cards.map((c) => c._id === props._id ? newCard : c);
-    //       setCards(newCards);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // } else {
-    //   api.removeLike(props._id, localStorage.getItem('jwt'))
-    //     .then((newCard) => {
-    //       const newCards = cards.map((c) => c._id === props._id ? newCard : c);
-    //       setCards(newCards);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // }
-
     const isLiked = props.likes.some((i) => i === currentUser._id);
     const cardCallback = (newCard) => {
       const newCards = cards.map((c) => (c._id === props._id ? newCard : c));
@@ -308,7 +285,7 @@ function App() {
             <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} >
             </Main>
             <section className="elements">
-            {cards.map(({ ...whatever }) => <Card {...whatever} key={whatever._id} onCardDelete={() => handleDeleteItem(whatever)} onCardClick={handleCardClick} onClickLike={() => { handleClickLike(whatever) }} />)}
+            { cards.map(({ ...whatever }) => <Card {...whatever} key={whatever._id} onCardDelete={() => handleDeleteItem(whatever)} onCardClick={handleCardClick} onClickLike={() => { handleClickLike(whatever) }} />)}
             </section>
             <EditProfilePopup onClose={closeAllPopups} isOpen={isEditProfilePopupOpen} onUpdateUser={handleUpdateUser} />
             <AddPlacePopup isOpen={isAddPlaceOpen} close={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
@@ -322,7 +299,7 @@ function App() {
       </div>
 
     </CurrentUserContext.Provider>
-  );
+  )
 }
 
 export default App;
