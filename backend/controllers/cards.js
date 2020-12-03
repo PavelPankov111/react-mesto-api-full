@@ -24,13 +24,7 @@ module.exports.postCards = async (req, res, next) => {
       .populate(['owner', 'likes'])
       .then((newCard) => newCard))
     .then((newCard) => res.status(200).send(newCard))
-    .catch((err) => {
-      if (err.name === 'ValidationError') {
-        const error = new BadRequestError('Переданы некорректные данные');
-        return next(error);
-      }
-      return next(err);
-    });
+    .catch(next);
 };
 
 module.exports.deleteCards = (req, res, next) => {
