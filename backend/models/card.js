@@ -16,10 +16,13 @@ const cardSchema = new Schema({
       message: (props) => `${props.value} - некорректный url`,
     },
   },
-  owner: {
-    type: Schema.Types.ObjectId,
+  owner:{  _id:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
     required: true,
+    },
   },
+  
   likes: [{
     type: Schema.Types.ObjectId,
     default: [],
