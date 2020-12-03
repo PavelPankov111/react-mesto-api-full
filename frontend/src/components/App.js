@@ -25,6 +25,7 @@ function App() {
   const popupAvatarButton = document.querySelector('.popup-avatar__button')
   const popupButton = document.querySelector('.popup__button')
   const history = useHistory()
+  const [cards, setCards] = React.useState([]);
 
   const [loggedIIn, setLoggedIIn] = React.useState(false)
   const [isPopupInfotooltipOpen, setIsPopupInfotooltipOpen] = React.useState(false)
@@ -63,7 +64,7 @@ function App() {
           console.log(err);
         });
     }
-  }, [loggedIIn])
+  }, [loggedIIn], [cards])
 
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false)
   const [currentUser, setCurrentUser] = React.useState({
@@ -120,7 +121,6 @@ function App() {
     setIsImagePopupOpen(true)
   }
 
-  const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
     setIsLoggedIn(true)
