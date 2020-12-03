@@ -11,28 +11,26 @@ module.exports.getCards = (req, res, next) => {
 }
 
 module.exports.postCards = async (req, res, next) => {
-  // const { name, link } = req.body;
-  // Card.create({ name, link, owner: req.user._id })
-  // .then((card) => {
-  //   card.owner = { _id: req.user._id };
-  //   return res.status(200).send(card)
-  // })
-  // .catch(next)
   const { name, link } = req.body;
   Card.create({ name, link, owner: req.user._id })
-    .then((card) => Card.findById(card._id)
-      .populate(['owner', 'likes'])
-      .then((newCard) => newCard))
-    .then((newCard) => {
-      res.status(200).send(newCard)
-    })
-    .catch((err) => {
-      if (err.name === 'ValidationError') {
-        const error = new BadRequestError('Переданы некорректные данные');
-        return next(error);
-      }
-      return next(err);
-    });
+  .then((card) => {
+    card.owner = { _id: req.user._id };
+    return res.status(200).send(card)
+  })
+  .catch(next)
+  // const { name, link } = req.body;
+  // Card.create({ name, link, owner: req.user._id })
+  //   .then((card) => Card.findById(card._id)
+  //     .populate(['owner', 'likes'])
+  //     .then((newCard) => newCard))
+  //   .then((newCard) => res.status(200).send(newCard))
+  //   .catch((err) => {
+  //     if (err.name === 'ValidationError') {
+  //       const error = new BadRequestError('Переданы некорректные данные');
+  //       return next(error);
+  //     }
+  //     return next(err);
+  //   });
 };
 
 module.exports.deleteCards = (req, res, next) => {
