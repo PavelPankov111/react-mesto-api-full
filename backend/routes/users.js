@@ -8,13 +8,13 @@ const {
 router.get('/users', celebrate({
   headers: Joi.object().keys({
     authorization: Joi.string().required().min(100),
-  })
+  }).unknown(true),
 }), getUsers);
 
 router.get('/users/me', celebrate({
   headers: Joi.object().keys({
     authorization: Joi.string().required().min(100),
-  })
+  }).unknown(true),
 }), getUsersMe);
 
 router.get('/users/:id', celebrate({
@@ -26,11 +26,11 @@ router.get('/users/:id', celebrate({
 router.patch('/users/me', celebrate({
   headers: Joi.object().keys({
     authorization: Joi.string().required().min(100),
-  }),
+  }).unknown(true),
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
     about: Joi.string().required().min(2).max(30),
-  })
+  }).unknown(true),
 }), updateUser);
 
 router.patch('/users/me/avatar', celebrate({
