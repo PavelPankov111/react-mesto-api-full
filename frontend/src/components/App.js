@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -34,7 +34,6 @@ function App() {
 
   function tokenCheck() {
     if (localStorage.getItem('jwt')) {
-      console.log(localStorage.getItem('jwt'))
       api.checkToken(localStorage.getItem('jwt'))
         .then((res) => {
           if (res) {
@@ -49,21 +48,6 @@ function App() {
     tokenCheck()
   }, [])
 
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
-
-  // React.useEffect(() => {
-  //   if (isLoggedIn) {
-  //     Promise.all([api.getUserInfo(localStorage.getItem('jwt')), api.getInitialCards(localStorage.getItem('jwt'))])
-  //       .then((res) => {
-  //         setCurrentUser(res[0])
-  //         setCards(res[1])
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // }, [loggedIIn])
-
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false)
   const [currentUser, setCurrentUser] = React.useState({
     name: '',
@@ -73,13 +57,11 @@ function App() {
   });
 
   React.useEffect(() => {
-    console.log('effect', loggedIIn)
     if (!loggedIIn) {
       return 
     }
     api.getUserInfo(localStorage.getItem('jwt'))
       .then(res => {
-        console.log('request', res)
         setCurrentUser(res)
       })
       .catch((err) => {
@@ -127,7 +109,6 @@ function App() {
   React.useEffect(() => {
     api.getInitialCards(localStorage.getItem('jwt'))
       .then((data) => {
-        console.log(data)
         setCards(data)
       })
       .catch((err) => {
@@ -232,7 +213,6 @@ function App() {
 
   function onRegister(email, password) {
     api.register(email, password).then((res) => {
-      console.log(res)
       if (res.statusCode !== 400) {
         setImg(union)
         setIsPopupInfotooltipOpen(true)
@@ -250,10 +230,8 @@ function App() {
 
   function onLogin(email, password) {
     api.login(email, password).then((res) => {
-      console.log('login', res)
 
       if (res.token) {
-        console.log('true')
         localStorage.setItem('jwt', res.token)
         tokenCheck()
         handleLogIn()
@@ -263,7 +241,6 @@ function App() {
       }
     })
       .catch(() => {
-        console.log('catch')
         setImg(union2)
         setTitle('Что-то пошло не так! Попробуйте ещё раз.')
         setIsPopupInfotooltipOpen(true)
