@@ -33,7 +33,6 @@ module.exports.updateAvatar = (req, res, next) => {
     .catch(next);
 };
 
-
 module.exports.createUser = (req, res, next) => {
   const {
     password, email,
