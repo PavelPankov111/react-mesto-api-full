@@ -36,14 +36,13 @@ app.get('/crash-test', () => {
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
-    name:  Joi.string().min(2).max(30),
+    name: Joi.string().min(2).max(30),
     about: Joi.string().min(2).max(30),
     avatar: Joi.string().pattern( /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/),
     email: Joi.string().required().email().min(5),
     password: Joi.string().required().min(2).max(30),
   }),
 }), createUser);
-
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
@@ -64,8 +63,6 @@ app.all('*', (req, res) => { throw new NotFoundError('Запрашиваемый
 
 app.use((err, req, res, next) => {
   let { statusCode = 500, message } = err;
-  // console.log(req);
-  // console.log(res);
 
   console.log(message);
   console.log(statusCode);
