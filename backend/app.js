@@ -44,7 +44,7 @@ app.post('/signin', celebrate({
 app.post('/signup', celebrate({
   headers: Joi.object().keys({
     "Access-Control-Allow-Origin": "*"
-  }),
+  }).unknown(true),
   body: Joi.object().keys({
     name:  Joi.string.min(2).max(30),
     about: Joi.string.min(2).max(30),
