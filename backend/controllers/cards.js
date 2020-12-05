@@ -31,7 +31,7 @@ module.exports.deleteCards = (req, res, next) => {
   Card.findByIdAndRemove({ _id: req.params.cardId })
     .then((card) => {
       if (card === null) {
-        return res.status(404).send({ message: 'Карточки с таким id - не существует!' });
+        return res.status(403).send({ message: 'Вы не можете удалять чужие карточки!' });
       }
       return res.status(200).send(card);
     })
