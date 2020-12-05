@@ -35,7 +35,6 @@ module.exports.deleteCards = (req, res, next) => {
       }
       const owner = String(card.owner)
       const userId = String(req.user._id)
-
       if (owner !== userId) {
         return res.status(403).send({ message: 'Вы не можеет удалять чужие карточки' });
       }
