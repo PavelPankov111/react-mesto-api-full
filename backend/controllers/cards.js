@@ -33,10 +33,11 @@ module.exports.deleteCards = (req, res, next) => {
       if (card === null) {
         return res.status(404).send({ message: 'Карточки с таким id не существует!' });
       }
+      const owner = String(card.owner)
+      const userId = String(req.user._id)
 
-      if (card.owner !== req.user._id) {
-        // return res.status(403).send({ message: 'Вы не можеет удалять чужие карточки' });
-        return res.send(req.user._id)
+      if (owner !== userId) {
+        return res.status(403).send({ message: 'Вы не можеет удалять чужие карточки' });
       }
       return res.status(200).send(card);
     })
