@@ -1,4 +1,4 @@
-# react-mesto-api-full
-## React + express + mongoDB 
-## backend: http://api.pavel.students.nomoredomains.monster
-## frontend : http://pavel.students.nomoredomains.rocks/
+# Проект "mesto"
+## Стэк: React + express + mongoDB 
+## backend: _npm install + npm start_ 
+## frontend : _npm install + npm start_ 
